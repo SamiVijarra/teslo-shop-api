@@ -41,12 +41,4 @@ export class ProductsController {
   remove(@Param('id', ParseUUIDPipe) id: string) {
     return this.productsService.remove(id);
   }
-
-  /*
-    @Delete(':id')
-  remove(@Param('id', ParseMongoIdPipe) id: string) {
-    return this.pokemonService.remove(id);
-  }
-}
-  */
 }
