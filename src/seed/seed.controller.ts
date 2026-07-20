@@ -1,7 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
 
-import { Auth } from 'src/auth/decorators';
-import { ValidRoles } from 'src/auth/interfaces';
+//import { Auth } from 'src/auth/decorators';
+//import { ValidRoles } from 'src/auth/interfaces';
 
 import { SeedService } from './seed.service';
 
@@ -10,7 +10,7 @@ export class SeedController {
   constructor(private readonly seedService: SeedService) {}
 
   @Get()
-  @Auth(ValidRoles.admin, ValidRoles.superUser)
+  //@Auth(ValidRoles.admin, ValidRoles.superUser)
   executeSeed() {
     return this.seedService.runSeed();
   }
