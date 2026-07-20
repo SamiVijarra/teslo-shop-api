@@ -7,11 +7,14 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { ProductImage } from './product-image.entity';
+import { ApiProperty } from '@nestjs/swagger';
+
+import { ProductImage } from '../entities';
 import { User } from '../../auth/entities/user.entity';
 
 @Entity({ name: 'products' })
 export class Product {
+  @ApiProperty()
   @PrimaryGeneratedColumn('uuid')
   id!: string;
 
