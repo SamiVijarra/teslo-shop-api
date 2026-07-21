@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
 import {
   OnGatewayConnection,
   OnGatewayDisconnect,
@@ -13,9 +12,15 @@ export class MessagesWsGateway
 {
   constructor(private readonly messagesWsService: MessagesWsService) {}
   handleConnection(client: Socket) {
-    console.log('Cliente conectado', client.id);
+    this.messagesWsService.registerClient(client);
+    console.log({
+      connectedClients: this.messagesWsService.getConnectedClients(),
+    });
   }
   handleDisconnect(client: Socket) {
-    console.log('Cliente desconectado', client.id);
+    this.messagesWsService.removeClient(client.id);
+    console.log({
+      connectedClients: this.messagesWsService.getConnectedClients(),
+    });
   }
 }
