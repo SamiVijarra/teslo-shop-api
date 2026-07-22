@@ -1,9 +1,6 @@
-import { join } from 'path';
-
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ServeStaticModule } from '@nestjs/serve-static';
 
 import { ProductsModule } from './products/products.module';
 import { CommonModule } from './common/common.module';
@@ -23,10 +20,7 @@ import { MessagesWsModule } from './messages-ws/messages-ws.module';
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
       autoLoadEntities: true,
-      synchronize: true,
-    }),
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, `..`, `public`),
+      synchronize: process.env.NODE_ENV !== 'production',
     }),
     ProductsModule,
     CommonModule,
